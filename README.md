@@ -1,5 +1,5 @@
-# Proyecto-2-DPOO
-Proyecto 2 Diseño y programación orientada a objetos
+# Proyecto-3-DPOO
+Proyecto 3 Diseño y programación orientada a objetos
 
 Integrantes:
 
