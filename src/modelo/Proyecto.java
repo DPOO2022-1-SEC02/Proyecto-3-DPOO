@@ -15,11 +15,8 @@ public class Proyecto implements Serializable {
     private HashMap<String, Actividad> actividades;
     private HashMap<String, Usuario> participantesMap;
     private ArrayList<Usuario> participantes;
-
-
     private Usuario duenio;
     private int id;
-
     private ArrayList<String> tipos;
 
     public Proyecto(String nombre, String descripcion, Usuario duenio, int id, Date fechaFinal,ArrayList<String> tipos ) {

@@ -68,7 +68,7 @@ public class FrameCrearProyecto extends JFrame {
 		
 		//Aquí hay algo de logica.
 		ArrayList<String> tiposActividades = new ArrayList<>();  
-		
+		ArrayList<String> tiposTareas = new ArrayList<>();  
 		//Todo esto es únicamente diseno
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -424,6 +424,30 @@ public class FrameCrearProyecto extends JFrame {
 		lblAgregarTarea.setBackground(Color.WHITE);
 		lblAgregarTarea.setBounds(0, 0, 164, 39);
 		btnAgregarTarea.add(lblAgregarTarea);
+		btnAgregarTarea.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			tiposTareas.add(txtTipoTarea.getText());
+			JOptionPane.showMessageDialog(null, "Se añadio el tipo de tarea: " + txtTipoTarea.getText());
+			txtTipoTarea.setText("");
+		}
+		@Override
+			public void mouseEntered(MouseEvent e) {
+				lblAgregarTarea.setBackground(new Color(153, 204, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblAgregarTarea.setBackground(new Color(135, 206, 250));
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				lblAgregarTarea.setBackground(new Color(153, 204, 255));
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				lblAgregarTarea.setBackground(new Color(135, 206, 250));
+			}
+		});
 
 		
 		//Logica para cuando se añade el proyecto
