@@ -24,10 +24,12 @@ public class Actividad implements Serializable {
     private HashMap<LocalDate, Integer> trabajoDiario;
     private ArrayList<Date[]> fechas;
     private boolean terminado;
-    private int id;
+    private int id; 
+    private boolean esFinal;
 
+    private String tarea;
 
-    public Actividad(String correo, String titulo,String nombre, String descripcion, String tipoActividad, int id) {
+    public Actividad(String correo, String titulo,String nombre, String descripcion, String tipoActividad, int id,boolean esFinTarea,String tarea) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.nombre = nombre;
@@ -40,6 +42,9 @@ public class Actividad implements Serializable {
         trabajoTotal = 0;
         fechas = new ArrayList<>();
         terminado = false;
+        this.esFinal = esFinTarea;
+        //se aÃ±ade con el comboBox de tareas
+        this.tarea = tarea;
     }
 
     public void nuevoRegistro(Date fechaInicio, Date fechaFinal) {
@@ -50,6 +55,7 @@ public class Actividad implements Serializable {
 
 
     public Date getFecha() {
+        
     	return fechaInicio;
     }
     public void initCronometro() {
@@ -89,6 +95,10 @@ public class Actividad implements Serializable {
         }
     }
 
+    public int getTiempoTrabajo() {
+        return tiempoTrabajo;
+    }
+
     public void setFechaInicio(Date fecha) {
         fechaInicio = fecha;
     }
@@ -111,9 +121,9 @@ public class Actividad implements Serializable {
         if (fechaFinal == null) {
         	String fechaFinal = "Actividad todavia en curso";
         }
-        String retorno = "Título: " + titulo +
+        String retorno = "TÃ­tulo: " + titulo +
         		"\nCreador: " + nombre +
-                "\nDescripción: " + descripcion +
+                "\nDescripciÃ³n: " + descripcion +
                 "\nEstado: " + ended +
                 "\nTipo: " + tipoActividad +
                 "\nFecha de Inicio: " + fechaInicio +

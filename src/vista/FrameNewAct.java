@@ -39,7 +39,7 @@ public class FrameNewAct extends JFrame {
 	private JTextField txtActividad;
 	private JTextField txtCorreoEncargado;
 	private String seleccionTipoAct;
-
+	private String seleccionTipoTarea;
 	/**
 	 * Launch the application.
 	 */
@@ -297,7 +297,6 @@ public class FrameNewAct extends JFrame {
 		
 		JComboBox  <String> cmbBoxTiposAct = new JComboBox <String> ();
 		cmbBoxTiposAct.setToolTipText("Tipo Actividad");
-		
 		cmbBoxTiposAct.setBackground(new Color(240,255,255));
 		cmbBoxTiposAct.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
 		cmbBoxTiposAct.setBounds(24, 231, 337, 37);
@@ -337,26 +336,23 @@ public class FrameNewAct extends JFrame {
 		cmbBoxTiposTarea.setBackground(new Color(240, 255, 255));
 		cmbBoxTiposTarea.setBounds(24, 286, 337, 37);
 		contentPane.add(cmbBoxTiposTarea);
-		
-
-		for(String tipo: manager.getProyecto(idProy).getTiposArray()) {
-			cmbBoxTiposAct.addItem(tipo);
+		for(String tipoTarea: manager.getProyecto(idProy).getTiposTareas()) {
+			cmbBoxTiposTarea.addItem(tipoTarea);
 			
 		}
-		cmbBoxTiposAct.addActionListener(new ActionListener(){
-
+		cmbBoxTiposTarea.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				seleccionTipoAct = cmbBoxTiposAct.getSelectedItem().toString();
+				seleccionTipoTarea = cmbBoxTiposTarea.getSelectedItem().toString();
 				
 			}
 			
 		});
 		setLocationRelativeTo(null);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Es actividad final?");
-		chckbxNewCheckBox.setBounds(371, 294, 111, 23);
-		contentPane.add(chckbxNewCheckBox);
+		JCheckBox chckbxEsFin = new JCheckBox("Es actividad final?", false);
+		chckbxEsFin.setBounds(371, 294, 111, 23);
+		contentPane.add(chckbxEsFin);
 		
 		//Logica para añadir actividad 
 		pnlBtnAdd.addMouseListener(new MouseAdapter() {
@@ -372,7 +368,7 @@ public class FrameNewAct extends JFrame {
 					if (user != null){
 						Proyecto prActual = manager.getProyecto(idProy);
 						user.setPrActual(prActual);
-						user.iniciarActividadExt(txtCorreoEncargado.getText(),txtActividad.getText(),cmbBoxTiposAct.getName(),txtDescripcion.getText());
+						user.iniciarActividadExt(txtCorreoEncargado.getText(),txtActividad.getText(),cmbBoxTiposAct.getName(),txtDescripcion.getText(),chckbxEsFin.isSelected(),cmbBoxTiposTarea.getName());
 						
 						JOptionPane.showMessageDialog(null, "ï¿½ Agrego con exito !");
 						
@@ -386,7 +382,7 @@ public class FrameNewAct extends JFrame {
 						Proyecto prActual = manager.getProyecto(idProy);
 						Usuario newUser = new Usuario(txtNombre.getText(),txtCorreoEncargado.getText(), prActual);
 						manager.getProyecto(idProy).addParticipante(newUser);
-						newUser.iniciarActividadExt(txtCorreoEncargado.getText(),txtActividad.getText(),cmbBoxTiposAct.getName(),txtDescripcion.getText());
+						newUser.iniciarActividadExt(txtCorreoEncargado.getText(),txtActividad.getText(),cmbBoxTiposAct.getName(),txtDescripcion.getText(),chckbxEsFin.isSelected(),cmbBoxTiposTarea.getName());
 						JOptionPane.showMessageDialog(null, "Se agrego el nuevo usuario y se creo la actividad!");	
 						
 				    	JComponent comp = (JComponent) e.getSource();

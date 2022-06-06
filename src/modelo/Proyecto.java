@@ -17,9 +17,11 @@ public class Proyecto implements Serializable {
     private ArrayList<Usuario> participantes;
     private Usuario duenio;
     private int id;
-    private ArrayList<String> tipos;
+    private ArrayList<String> tiposActividades;
+    private ArrayList<String> tiposTareas;
+    private Paquete raiz;
 
-    public Proyecto(String nombre, String descripcion, Usuario duenio, int id, Date fechaFinal,ArrayList<String> tipos ) {
+    public Proyecto(String nombre, String descripcion, Usuario duenio, int id, Date fechaFinal,ArrayList<String> tiposActividades,ArrayList<String> tipoTareas ) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duenio = duenio;
@@ -29,30 +31,37 @@ public class Proyecto implements Serializable {
         actividades = new HashMap<>();
         participantes = new ArrayList<>();
         participantesMap = new HashMap<>();
-        this.tipos = tipos;
+        this.tiposActividades = tiposActividades;
+        this.tiposTareas = tipoTareas;
+        raiz = new Paquete();
         addParticipante(duenio);
 
     }
 
 
     public void setTipos(ArrayList<String> tipos) {
-        this.tipos = (tipos);
+        this.tiposActividades = (tipos);
     }
 
     public String getTipos() {
         String retorno = "";
         int posicion = 1;
-        for (String tipo : tipos) {
+        for (String tipo : tiposActividades) {
             retorno += posicion + ". " + tipo + "\n";
             posicion++;
         }
         return retorno;
     }
     public ArrayList<String>  getTiposArray(){
-    	return tipos;
+    	return tiposActividades;
     }
+    
+	public ArrayList<String>  getTiposTareas(){
+    	return tiposTareas;
+    }
+    
     public String getTipo(int pos) {
-        return tipos.get(pos - 1);
+        return tiposActividades.get(pos - 1);
     }
 
 
@@ -67,7 +76,6 @@ public class Proyecto implements Serializable {
 
     public void addActividad(Actividad actividad) {
         actividades.put(actividad.getTitulo(), actividad);
-
     }
 
 

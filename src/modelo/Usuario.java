@@ -11,6 +11,8 @@ public class Usuario implements Serializable {
     protected Proyecto prActual;
     private ArrayList<Actividad> actividades;
 
+    private ArrayList<Tarea> tareas;
+
     @Override
     public boolean equals(Object usuario2) {
         if (this.getEmail().equals(((Usuario) usuario2).getEmail())) {
@@ -78,8 +80,8 @@ public class Usuario implements Serializable {
 
     }
 
-    public void iniciarActividadExt(String correo, String nombreActividad, String tipoActividad, String descripcion) {
-        Actividad actividad = new Actividad(correo, nombreActividad, nombre, descripcion, tipoActividad, prActual.getActividadesSize());
+    public void iniciarActividadExt(String correo, String nombreActividad, String tipoActividad, String descripcion, boolean esFin, String tipoTarea) {
+        Actividad actividad = new Actividad(correo, nombreActividad, nombre, descripcion, tipoActividad, prActual.getActividadesSize(),esFin, tipoTarea);
         prActual.addActividad(actividad);
         actividades.add(actividad);
     }
@@ -104,6 +106,9 @@ public class Usuario implements Serializable {
         actividades.add(actividad);
     }
 
+    public void addTarea(Tarea tarea) {
+        tareas.add(tarea);
+    }
     public String getName() {
         return nombre;
     }
