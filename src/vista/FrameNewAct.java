@@ -29,6 +29,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.JComboBox;
 import modelo.Actividad;
 import modelo.Usuario;
+import javax.swing.JCheckBox;
 public class FrameNewAct extends JFrame {
 
 	private JPanel contentPane;
@@ -185,7 +186,7 @@ public class FrameNewAct extends JFrame {
 		txtDescripcion.setHorizontalAlignment(SwingConstants.LEFT);
 		txtDescripcion.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		txtDescripcion.setColumns(10);
-		txtDescripcion.setBounds(24, 150, 337, 37);
+		txtDescripcion.setBounds(24, 115, 337, 28);
 		contentPane.add(txtDescripcion);
 		
 		txtNombre = new JTextField();
@@ -216,7 +217,7 @@ public class FrameNewAct extends JFrame {
 		txtNombre.setColumns(10);
 		txtNombre.setBorder(new LineBorder(new Color(135, 206, 250), 2));
 		txtNombre.setBackground(new Color(240, 255, 255));
-		txtNombre.setBounds(24, 198, 337, 37);
+		txtNombre.setBounds(24, 148, 337, 28);
 		contentPane.add(txtNombre);
 		
 		lblMessage.setForeground(new Color(139, 0, 0));
@@ -253,14 +254,14 @@ public class FrameNewAct extends JFrame {
 		txtActividad.setColumns(10);
 		txtActividad.setBorder(new LineBorder(new Color(135, 206, 250), 2));
 		txtActividad.setBackground(new Color(240, 255, 255));
-		txtActividad.setBounds(24, 102, 337, 37);
+		txtActividad.setBounds(24, 80, 337, 28);
 		contentPane.add(txtActividad);
 		
 		JLabel lblTitulo = new JLabel("Agregar una actividad");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 		lblTitulo.setForeground(new Color(51, 102, 204));
-		lblTitulo.setBounds(24, 51, 337, 40);
+		lblTitulo.setBounds(24, 40, 337, 40);
 		contentPane.add(lblTitulo);
 		
 		txtCorreoEncargado = new JTextField();
@@ -271,7 +272,7 @@ public class FrameNewAct extends JFrame {
 		txtCorreoEncargado.setColumns(10);
 		txtCorreoEncargado.setBorder(new LineBorder(new Color(135, 206, 250), 2));
 		txtCorreoEncargado.setBackground(new Color(240, 255, 255));
-		txtCorreoEncargado.setBounds(24, 246, 337, 37);
+		txtCorreoEncargado.setBounds(24, 182, 337, 28);
 		contentPane.add(txtCorreoEncargado);
 		txtCorreoEncargado.addFocusListener(new FocusAdapter() {
 			@Override
@@ -294,27 +295,68 @@ public class FrameNewAct extends JFrame {
 			}
 		});
 		
-		JComboBox  <String> cmbBoxTipos = new JComboBox <String> ();
+		JComboBox  <String> cmbBoxTiposAct = new JComboBox <String> ();
+		cmbBoxTiposAct.setToolTipText("Tipo Actividad");
 		
-		cmbBoxTipos.setBackground(new Color(240,255,255));
-		cmbBoxTipos.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		cmbBoxTipos.setBounds(24, 294, 337, 37);
-		contentPane.add(cmbBoxTipos);
-		
+		cmbBoxTiposAct.setBackground(new Color(240,255,255));
+		cmbBoxTiposAct.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		cmbBoxTiposAct.setBounds(24, 231, 337, 37);
+		contentPane.add(cmbBoxTiposAct);
 		for(String tipo: manager.getProyecto(idProy).getTiposArray()) {
-			cmbBoxTipos.addItem(tipo);
+			cmbBoxTiposAct.addItem(tipo);
 			
 		}
-		cmbBoxTipos.addActionListener(new ActionListener(){
+		cmbBoxTiposAct.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				seleccionTipoAct = cmbBoxTipos.getSelectedItem().toString();
+				seleccionTipoAct = cmbBoxTiposAct.getSelectedItem().toString();
 				
 			}
 			
 		});
 		setLocationRelativeTo(null);
+		
+		JLabel lblSeleccionAct = new JLabel("Seleccionar Tipo Actividad");
+		lblSeleccionAct.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeleccionAct.setForeground(new Color(51, 102, 204));
+		lblSeleccionAct.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		lblSeleccionAct.setBounds(24, 214, 337, 18);
+		contentPane.add(lblSeleccionAct);
+		
+		JLabel lblSeleccionTarea = new JLabel("Seleccionar Tipo Tarea");
+		lblSeleccionTarea.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeleccionTarea.setForeground(new Color(51, 102, 204));
+		lblSeleccionTarea.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		lblSeleccionTarea.setBounds(24, 266, 337, 18);
+		contentPane.add(lblSeleccionTarea);
+		
+		JComboBox<String> cmbBoxTiposTarea = new JComboBox<String>();
+		cmbBoxTiposTarea.setToolTipText("Tipo Tarea");
+		cmbBoxTiposTarea.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		cmbBoxTiposTarea.setBackground(new Color(240, 255, 255));
+		cmbBoxTiposTarea.setBounds(24, 286, 337, 37);
+		contentPane.add(cmbBoxTiposTarea);
+		
+
+		for(String tipo: manager.getProyecto(idProy).getTiposArray()) {
+			cmbBoxTiposAct.addItem(tipo);
+			
+		}
+		cmbBoxTiposAct.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				seleccionTipoAct = cmbBoxTiposAct.getSelectedItem().toString();
+				
+			}
+			
+		});
+		setLocationRelativeTo(null);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Es actividad final?");
+		chckbxNewCheckBox.setBounds(371, 294, 111, 23);
+		contentPane.add(chckbxNewCheckBox);
 		
 		//Logica para añadir actividad 
 		pnlBtnAdd.addMouseListener(new MouseAdapter() {
@@ -330,7 +372,7 @@ public class FrameNewAct extends JFrame {
 					if (user != null){
 						Proyecto prActual = manager.getProyecto(idProy);
 						user.setPrActual(prActual);
-						user.iniciarActividadExt(txtCorreoEncargado.getText(),txtActividad.getText(),cmbBoxTipos.getName(),txtDescripcion.getText());
+						user.iniciarActividadExt(txtCorreoEncargado.getText(),txtActividad.getText(),cmbBoxTiposAct.getName(),txtDescripcion.getText());
 						
 						JOptionPane.showMessageDialog(null, "ï¿½ Agrego con exito !");
 						
@@ -344,7 +386,7 @@ public class FrameNewAct extends JFrame {
 						Proyecto prActual = manager.getProyecto(idProy);
 						Usuario newUser = new Usuario(txtNombre.getText(),txtCorreoEncargado.getText(), prActual);
 						manager.getProyecto(idProy).addParticipante(newUser);
-						newUser.iniciarActividadExt(txtCorreoEncargado.getText(),txtActividad.getText(),cmbBoxTipos.getName(),txtDescripcion.getText());
+						newUser.iniciarActividadExt(txtCorreoEncargado.getText(),txtActividad.getText(),cmbBoxTiposAct.getName(),txtDescripcion.getText());
 						JOptionPane.showMessageDialog(null, "Se agrego el nuevo usuario y se creo la actividad!");	
 						
 				    	JComponent comp = (JComponent) e.getSource();
