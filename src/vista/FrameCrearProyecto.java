@@ -37,9 +37,11 @@ public class FrameCrearProyecto extends JFrame {
 	private JTextField txtNombreDuenio;
 	private JTextField txtCorreoDuenio;
 	private JTextField txtFechaFinal;
-	private JTextField txtTipo;
-	private JPanel btnAgregar;
-	private JLabel lblAgregar;
+	private JTextField txtTipoActividad;
+	private JPanel btnAgregarActividad;
+	private JLabel lblAgregarActividad;
+	private JTextField txtNombrePaqueteRaiz;
+	private JTextField txtTipoTarea;
 
 	
 	/**
@@ -148,7 +150,7 @@ public class FrameCrearProyecto extends JFrame {
 		txtNombreProyecto.setHorizontalAlignment(SwingConstants.LEFT);
 		txtNombreProyecto.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		txtNombreProyecto.setColumns(10);
-		txtNombreProyecto.setBounds(196, 51, 280, 37);
+		txtNombreProyecto.setBounds(196, 51, 280, 22);
 		contentPane.add(txtNombreProyecto);
 
 		txtDescripcion = new JTextField();
@@ -178,7 +180,7 @@ public class FrameCrearProyecto extends JFrame {
 		txtDescripcion.setHorizontalAlignment(SwingConstants.LEFT);
 		txtDescripcion.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		txtDescripcion.setColumns(10);
-		txtDescripcion.setBounds(196, 99, 280, 37);
+		txtDescripcion.setBounds(196, 79, 280, 23);
 		contentPane.add(txtDescripcion);
 
 		
@@ -190,7 +192,7 @@ public class FrameCrearProyecto extends JFrame {
 		txtNombreDuenio.setColumns(10);
 		txtNombreDuenio.setBorder(new LineBorder(new Color(135, 206, 250), 2));
 		txtNombreDuenio.setBackground(Color.WHITE);
-		txtNombreDuenio.setBounds(196, 162, 280, 37);
+		txtNombreDuenio.setBounds(196, 113, 280, 22);
 		contentPane.add(txtNombreDuenio);
 		txtNombreDuenio.addFocusListener(new FocusAdapter() {
 			@Override
@@ -220,7 +222,7 @@ public class FrameCrearProyecto extends JFrame {
 		txtCorreoDuenio.setColumns(10);
 		txtCorreoDuenio.setBorder(new LineBorder(new Color(135, 206, 250), 2));
 		txtCorreoDuenio.setBackground(Color.WHITE);
-		txtCorreoDuenio.setBounds(196, 210, 280, 37);
+		txtCorreoDuenio.setBounds(196, 146, 280, 22);
 		contentPane.add(txtCorreoDuenio);
 		txtCorreoDuenio.addFocusListener(new FocusAdapter() {
 			@Override
@@ -251,7 +253,7 @@ public class FrameCrearProyecto extends JFrame {
 		txtFechaFinal.setColumns(10);
 		txtFechaFinal.setBorder(new LineBorder(new Color(135, 206, 250), 2));
 		txtFechaFinal.setBackground(Color.WHITE);
-		txtFechaFinal.setBounds(196, 258, 280, 37);
+		txtFechaFinal.setBounds(196, 179, 280, 22);
 		contentPane.add(txtFechaFinal);
 		txtFechaFinal.addFocusListener(new FocusAdapter() {
 			@Override
@@ -304,50 +306,74 @@ public class FrameCrearProyecto extends JFrame {
 		lblIngresaTusDatos.setForeground(new Color(0, 110, 197));
 		pnlAzul.add(lblIngresaTusDatos);
 		
-		txtTipo = new JTextField();
-		txtTipo.setText("Tipo Actividad");
-		txtTipo.setHorizontalAlignment(SwingConstants.LEFT);
-		txtTipo.setForeground(new Color(100, 149, 237));
-		txtTipo.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		txtTipo.setColumns(10);
-		txtTipo.setBorder(new LineBorder(new Color(135, 206, 250), 2));
-		txtTipo.setBackground(Color.WHITE);
-		txtTipo.setBounds(196, 321, 207, 37);
-		contentPane.add(txtTipo);
-		txtTipo.addFocusListener(new FocusAdapter() {
+		txtTipoActividad = new JTextField();
+		txtTipoActividad.setText("Tipo Actividad");
+		txtTipoActividad.setHorizontalAlignment(SwingConstants.LEFT);
+		txtTipoActividad.setForeground(new Color(100, 149, 237));
+		txtTipoActividad.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		txtTipoActividad.setColumns(10);
+		txtTipoActividad.setBorder(new LineBorder(new Color(135, 206, 250), 2));
+		txtTipoActividad.setBackground(Color.WHITE);
+		txtTipoActividad.setBounds(196, 261, 207, 37);
+		contentPane.add(txtTipoActividad);
+		txtTipoActividad.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(txtTipo.getText().equals("Tipo Actividad")) {
-					txtTipo.setText("");
+				if(txtTipoActividad.getText().equals("Tipo Actividad")) {
+					txtTipoActividad.setText("");
 				}
 				else {
-					txtTipo.selectAll();
+					txtTipoActividad.selectAll();
 				}
 			}
 			
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(txtTipo.getText().equals("")) {
-					txtTipo.setText("Tipo Actividad");
+				if(txtTipoActividad.getText().equals("")) {
+					txtTipoActividad.setText("Tipo Actividad");
 				}
 				
 			}
 		});	
 		
-		btnAgregar = new JPanel();
-		btnAgregar.setLayout(null);
-		btnAgregar.setBorder(new LineBorder(new Color(100, 149, 237), 2));
-		btnAgregar.setBackground(new Color(135, 206, 250));
-		btnAgregar.setBounds(421, 321, 120, 37);
-		contentPane.add(btnAgregar);
+		btnAgregarActividad = new JPanel();
+		btnAgregarActividad.setLayout(null);
+		btnAgregarActividad.setBorder(new LineBorder(new Color(100, 149, 237), 2));
+		btnAgregarActividad.setBackground(new Color(135, 206, 250));
+		btnAgregarActividad.setBounds(413, 261, 164, 37);
+		contentPane.add(btnAgregarActividad);
 
 		
-		lblAgregar = new JLabel("<html>Agregar tipo de<br>Actividad</html>");
-		lblAgregar.setForeground(new Color(30, 144, 255));
-		lblAgregar.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-		lblAgregar.setBackground(Color.WHITE);
-		lblAgregar.setBounds(10, 0, 123, 39);
-		btnAgregar.add(lblAgregar);
+		lblAgregarActividad = new JLabel("<html>Agregar tipo de actividad</html>");
+		lblAgregarActividad.setForeground(new Color(30, 144, 255));
+		lblAgregarActividad.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		lblAgregarActividad.setBackground(Color.WHITE);
+		lblAgregarActividad.setBounds(0, 0, 164, 37);
+		btnAgregarActividad.add(lblAgregarActividad);
+		btnAgregarActividad.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			tiposActividades.add(txtTipoActividad.getText());
+			JOptionPane.showMessageDialog(null, "Se añadio el tipo de actividad: " + txtTipoActividad.getText());
+			txtTipoActividad.setText("");
+		}
+		@Override
+			public void mouseEntered(MouseEvent e) {
+				btnAgregarActividad.setBackground(new Color(153, 204, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnAgregarActividad.setBackground(new Color(135, 206, 250));
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				btnAgregarActividad.setBackground(new Color(153, 204, 255));
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				btnAgregarActividad.setBackground(new Color(135, 206, 250));
+			}
+		});
 		
 		JPanel btnAgregarProy = new JPanel();
 		btnAgregarProy.setLayout(null);
@@ -362,30 +388,43 @@ public class FrameCrearProyecto extends JFrame {
 		lblAgregarProyecto.setBackground(Color.WHITE);
 		lblAgregarProyecto.setBounds(62, 0, 132, 22);
 		btnAgregarProy.add(lblAgregarProyecto);
-		btnAgregar.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			tiposActividades.add(txtTipo.getText());
-			JOptionPane.showMessageDialog(null, "Se añadio el tipo de actividad: " + txtTipo.getText());
-			txtTipo.setText("");
-		}
-		@Override
-			public void mouseEntered(MouseEvent e) {
-				btnAgregar.setBackground(new Color(153, 204, 255));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnAgregar.setBackground(new Color(135, 206, 250));
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				btnAgregar.setBackground(new Color(153, 204, 255));
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				btnAgregar.setBackground(new Color(135, 206, 250));
-			}
-		});//emptyCommit
+		
+		txtNombrePaqueteRaiz = new JTextField();
+		txtNombrePaqueteRaiz.setText("Nombre paquete raiz");
+		txtNombrePaqueteRaiz.setHorizontalAlignment(SwingConstants.LEFT);
+		txtNombrePaqueteRaiz.setForeground(new Color(100, 149, 237));
+		txtNombrePaqueteRaiz.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		txtNombrePaqueteRaiz.setColumns(10);
+		txtNombrePaqueteRaiz.setBorder(new LineBorder(new Color(135, 206, 250), 2));
+		txtNombrePaqueteRaiz.setBackground(Color.WHITE);
+		txtNombrePaqueteRaiz.setBounds(196, 212, 280, 22);
+		contentPane.add(txtNombrePaqueteRaiz);
+		
+		txtTipoTarea = new JTextField();
+		txtTipoTarea.setText("Tipo tarea");
+		txtTipoTarea.setHorizontalAlignment(SwingConstants.LEFT);
+		txtTipoTarea.setForeground(new Color(100, 149, 237));
+		txtTipoTarea.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		txtTipoTarea.setColumns(10);
+		txtTipoTarea.setBorder(new LineBorder(new Color(135, 206, 250), 2));
+		txtTipoTarea.setBackground(Color.WHITE);
+		txtTipoTarea.setBounds(196, 309, 207, 37);
+		contentPane.add(txtTipoTarea);
+		
+		JPanel btnAgregarTarea = new JPanel();
+		btnAgregarTarea.setLayout(null);
+		btnAgregarTarea.setBorder(new LineBorder(new Color(100, 149, 237), 2));
+		btnAgregarTarea.setBackground(new Color(135, 206, 250));
+		btnAgregarTarea.setBounds(413, 309, 164, 37);
+		contentPane.add(btnAgregarTarea);
+		
+		JLabel lblAgregarTarea = new JLabel("<html>Agregar tipo de tarea</html>");
+		lblAgregarTarea.setForeground(new Color(30, 144, 255));
+		lblAgregarTarea.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		lblAgregarTarea.setBackground(Color.WHITE);
+		lblAgregarTarea.setBounds(0, 0, 164, 39);
+		btnAgregarTarea.add(lblAgregarTarea);
+
 		
 		//Logica para cuando se añade el proyecto
 		btnAgregarProy.addMouseListener(new MouseAdapter(){
